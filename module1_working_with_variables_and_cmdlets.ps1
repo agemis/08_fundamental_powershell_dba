@@ -145,3 +145,41 @@ $123 = 123 # Powershell accept that, but it's a bad practice
 $123
 
 
+# ASSIGNMENT
+
+# * declare a variable, and give it a value
+# * add 100 to that variable, and store it in the same variable name
+# * add 100 more to the variable, but store it in a different variable name
+# * declare a new string variable, and set it to your name
+# * "add" your last name to the variable
+# * play around with parenthesis and order of the operations 
+#     what will the following return ? (3+1)*5+2-(1/3)
+# create a new array, and populate it with the following values
+#  * Drew
+#  * 100
+#  * Brent
+#  * 200
+#  * Rocky
+# set the second member of the arry you created to 300
+
+# ASIGNEMENT SOLUTION
+
+$variable = 1
+$variable = $variable + 100
+$variable
+$otherVariable = $variable + 100
+$otherVariable
+$myname = "antoine"
+$myname = $myname + " gemis"
+$myname
+(3+1)*5+2-(1/3) # 21.666
+$variable = @("Drew",100,"Brent",200,"Rocky")
+$variable[1] = 300
+$variable
+
+
+
+
+
+
+
