@@ -117,15 +117,21 @@ $variable
 # Can you subtract from any array?
 $variable = $variable - 1 # Not like this
 
-# ADVANCED: How to do then ? 
+# ADVANCED: How to do, then ? 
     # although an Array has a method Remove(), it is non-functional, because arrays are of fixed size !
     # so you have to reconstruct the array
+    
+    # Note: using Where-Object, in general, to garantee that you get an array you need to wrap the 
+    # entire statement in @(...), or strongly type the receiving variable. 
     $variable = @(1,2,3,4)
-    # To garantee that you get an array you need to wrap the entire statement in @(...), 
-    # or strongly type the receiving variable:
     [array]$variable = $variable | Where-Object { $_ -ne 4 }
     $variable
 
+    # In this case, it's not required, because we know that where-objet input is an array
+    $variable = @(1,2,3,4)
+    $variable = $variable | Where-Object { $_ -ne 4 }
+    $variable.GetType() 
+    $variable
     
 # Are there any restrictions on variable names?
 # Some
