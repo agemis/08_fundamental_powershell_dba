@@ -162,7 +162,7 @@ $123
 #  * Rocky
 # set the second member of the arry you created to 300
 
-# ASIGNEMENT SOLUTION
+# ASSIGNEMENT SOLUTION
 
 $variable = 1
 $variable = $variable + 100
