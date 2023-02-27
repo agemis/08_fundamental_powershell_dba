@@ -90,8 +90,63 @@ $array | Get-Member
 $array.Replace("Sammy", "Sam") # replace all occurences
 $array[1] = $array[1].Replace("Sammy", "Sam") # replace the first Sammy. Note that you have to assign the item
 
+# Demo 4
+# Creating you own objects is very easy with powershell
+$carobject = [PSCustomObject]@{
+    Color = "white"
+    Make = "mercedes"
+    Model = "c43"
+    Doors = 4
+}
+
+$carobject | Get-Member
+$carobject.Make
+
+# Add a new property!
+$carobject | Add-Member -MemberType NoteProperty -Name Year -Value 2018
+$carobject | Get-Member
+
+# LAB 3 SOLUTION
+# ==========================
+
+# Create a variable that holds all the object (files) in the directory `C:\JunkFiles`
+$files = Get-Item C:\JunkFiles\*
+
+# Find the minimum, maximum, and average file sizes
+$files | Measure-Object -Property Length -Minimum -Maximum -Average
+
+# Create a new variable that contains ONLY the full path and last write time of the files in the folder
+$files | Select-Object FullName, LastWriteTime
+
+# Create a custom dog object with the following properties:
+#	* Name (string)
+#	* Breed (string)
+#	* Age (number)
+#	* Color (string)
+#	* GoodDog (Boolean)
+$dog = [PSCustomObject]@{
+    Name = "Gitane"
+    Breed = "German Shepperd"
+    Age = 13
+    Color = "Black"
+    GoodDog = $true
+}
+$dog
+
+# Create an array of dogs
+$dogs = @($dog, 
+    [PSCustomObject]@{
+        Name = "Dick"
+        Breed = "Epagneul Breton"
+        Age = 19
+        Color = "Brown"
+        GoodDog = $true
+})
+
+$dogs
 
 
-
+# With a date object, tell me what day of the week falls on in 30 years
+((Get-Date).AddYears(30)).DayOfWeek
 
 
