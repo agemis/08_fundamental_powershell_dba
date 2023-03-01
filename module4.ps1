@@ -64,6 +64,26 @@ $array -contains "antoine" # true, by default, case does not ot matters
 "antoine" -in $array # $true
 "antoine" -notin $array # $false
 
+# Module 3
+# While loop
+$x = 0
+while ($x -lt 100) {
+    $x
+    $x = $x +1
+}
+$x
+
+# For loop.
+# I want to rename 4 file extensions, adding 3 to extension
+
+$files = Get-Item C:\Junkfiles\*
+for ($x = 0; $x -lt 4; $x = $x + 1) {
+    $filesext = $files | Where-Object {$_.Extension -eq ".$x" }
+    $filesext | Rename-Item -NewName {$_.Name.Replace(".$x", ".$($x+3)")} -Whatif
+}
+
+
+
 
 
 # Demo 2
