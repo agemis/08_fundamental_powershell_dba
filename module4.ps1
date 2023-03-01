@@ -139,7 +139,26 @@ foreach($f in $files)
 
 
 
+# LAB 4 ASSIGNMENT
 
+# Using Get-ChildItem, read all files in, `C:\JunkFiles\**`
+$files = Get-Item C:\JunkFiles\*
+
+# Select the first 100 files, sorted by creation time ascending, and then delete them.
+
+# Is it Select-Object to sort? I'm searching in the select-object, for the sort word
+# See the Out-String to Stream format? It's required because help output is special
+Get-Help Select-Object | Out-String -stream |  Select-String "sort" -context 5,2
+
+# Anyway, for sorting, it's Sort-Object
+$files | Sort-Object -Property CreationTime | Select-Object -First 100 | Remove-Item -WhatIf
+
+
+$files = Get-Item C:\JunkFiles\*
+
+
+For the remainder, if they contain the workd "yellow", replace theirs extension whith 99
+Next, for files that contains the code word "imagism", get their content, and write the content to a file, appending as you go
 
 
 
