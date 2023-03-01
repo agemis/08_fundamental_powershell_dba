@@ -120,11 +120,21 @@ $x
 
 # For loop.
 # I want to rename 4 file extensions, adding 3 to extension
-
 $files = Get-Item C:\Junkfiles\*
 for ($x = 0; $x -lt 4; $x = $x + 1) {
     $filesext = $files | Where-Object {$_.Extension -eq ".$x" }
     $filesext | Rename-Item -NewName {$_.Name.Replace(".$x", ".$($x+3)")} -Whatif
+}
+
+# The previous example was very nice ... if we do kwow the extensions list. 
+# What if do just kwow that the extensions is numeric and want to add 3 to this number?
+# We can une a ForEach loop, on each file, get its extension, add 3 and rename
+$files = Get-Item C:\Junkfiles\*
+foreach($f in $files)
+{
+    $extnumber = $f.Extension.Replace(".",$null) 
+    $extnumber = $extnumber.ToInt32($null) + 3   # null is the format here, it is required
+    $f | Rename-Item -NewName  {$_.Name.Replace($f.Extension, ".$($extnumber)")} -Whatif
 }
 
 
