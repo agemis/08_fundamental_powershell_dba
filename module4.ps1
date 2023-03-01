@@ -66,6 +66,35 @@ $array -contains "antoine" # true, by default, case does not ot matters
 
 
 
+# Demo 2
+$files = Get-Item C:\JunkFiles\*
+
+# What if I want to filter just for files that have a .0 extension?
+$files | Get-Member
+$files.Extension
+
+# Let's pipe the variable to Where-Object
+$files | Where-Object {$_.Extension -eq ".0"}
+
+# Nice, Now let's expand it. Find every file with a .à extension, created before "2/12/2023 4:00 PM"
+$files | Where-Object {$_.Extension -eq ".0" -and $_.CreationTime -lt "2/12/2023 4:00 PM"}
+
+# And now, let's get crazy
+# rename them...
+$dot0files = $files | Where-Object {$_.Extension -eq ".0" -and $_.CreationTime -lt "2/12/2023 4:00 PM"}
+$dot0files.Extension = ".4" # Extension propery is read only !
+$dot0files | Get-Member # Check that it is readonly
+
+# We need to call Rename-Item to rename the files
+# Whare are using -WhatIf te test. very nice !
+$dot0files | Rename-Item -NewName {$_.Name.Replace(".0", ".4")} -WhatIf
+
+# Demo 3
+
+
+
+
+
 
 
 
