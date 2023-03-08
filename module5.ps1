@@ -1,3 +1,57 @@
+# Demo 1
+# Let's say we often want to get an UTC Date as file time
+# We could keep doing that:
+$UTCDate = Get-Date # Local date
+$UTCDate.Kind
+# https://learn.microsoft.com/fr-fr/dotnet/api/system.datetime.tofiletimeutc?view=net-7.0
+$UTCDate.ToFileTimeUtc() # Convert to UTC if needed, then to Windows File Time
+
+#$UTCDate = $UTCDate.ToFileTimeUtc()
+$UTCDate
+
+# Or we could write a function
+function Get-CurrentDateInUTCFormat {
+	$UTCDate = Get-Date # Local date
+	$UTCDate.Kind
+	$UTCDate.ToFileTimeUtc() # Convert to UTC if needed, then to Windows File Time	
+}
+
+
+# Let's run that
+Get-CurrentDateInUTCFormat
+$UTCDateTime = Get-CurrentDateInUTCFormat
+$UTCDateTime
+
+# OK, it's fine, but the function is only visible and callable from the current powershell session.
+
+
+# to call a function from a file, you can create a Module5Functions\Get-CurrentDateInUTCFormat.ps1 file, 
+# that contains this code
+
+# # A "file as a function"
+#  #Part of module 5
+
+#  [cmdletbinding()]
+#  param ()
+ 
+#  #Or, we could write a function
+#  process {
+# 	 $UTCDate = Get-Date
+# 	 $UTCDate = $UTCDate.ToFileTimeUTC()
+# 	 $UTCDate
+#  }
+
+# And now, running the function from a file
+# so yo can run the code from any powershell session
+.\Module5Functions\Get-CurrentDateInUTCFormat.ps1
+
+
+# Demo 2
+
+
+
+
+
 
 
 
