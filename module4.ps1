@@ -155,13 +155,23 @@ $files | Sort-Object -Property CreationTime | Select-Object -First 100 | Remove-
 
 
 $files = Get-Item C:\JunkFiles\*
+# For the remainder, if they contain the workd "yellow", replace theirs extension whith 99
+# Next, for files that contains the code word "imagism", get their content, and write the content to a file, appending as you go
+foreach ($f in $files) {
+    $text = Get-Content $f.FullName 
+    if ($text.Contains("yellow")) {
+        Rename-Item -Path $f.FullName -NewName ($f.FullName.Replace($f.Extension, ".99")) -WhatIf
+    }
+    if ($text.Contains("imagism")) {
+        Add-Content -Path c:\users\agemi\downloads\add.txt -Value $text -WhatIf
+    }
+}
 
-
-For the remainder, if they contain the workd "yellow", replace theirs extension whith 99
-Next, for files that contains the code word "imagism", get their content, and write the content to a file, appending as you go
-
-
-
+#Another way to do it
+$files = Get-ChildItem -Path C:\JunkFiles | Where-Object {$_.Name -like "*yellow*"}
+ForEach ($j in $files) {
+    Get-Content $j.FullName | Out-File c:\users\agemi\downloads\\junkfiles.txt -Append -WhatIf
+}
 
 
 
